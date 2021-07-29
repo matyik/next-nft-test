@@ -14,27 +14,7 @@ code {
 }
 
 .Minter {
-  max-width: 80vh;
-  max-height: 80vh;
   padding: 60px 100px;
-  margin: 0 auto;
-  text-align: left;
-}
-
-input {
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: groove;
-  font-size: 16px;
-  width: 100%;
-  border-color: rgba(4, 4, 5, 0.1);
-  line-height: 32px;
-}
-
-input:focus {
-  outline: none;
-  border-color: rgba(4, 4, 5, 0.4);
 }
 
 button {
@@ -104,4 +84,16 @@ button {
 
 h1 {
   text-align: center;
+}
+
+.app-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  max-width: 400px;
 }

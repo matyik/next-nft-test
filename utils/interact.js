@@ -4,17 +4,9 @@ const { createAlchemyWeb3 } = require('@alch/alchemy-web3')
 const web3 = createAlchemyWeb3(`https://${alchemyKey}`)
 
 const contractABI = require('../contract-abi.json')
-const contractAddress = '0x4C4a07F737Bf57F6632B6CAB089B78f62385aCaE'
+const contractAddress = '0x4cf24542C69EB6548951FC2969793dB5b8730b12'
 
 export const mintNFT = async (url, name, description) => {
-  //error handling
-  if (url.trim() == '' || name.trim() == '' || description.trim() == '') {
-    return {
-      success: false,
-      status: 'Please make sure all fields are completed before minting.'
-    }
-  }
-
   //make metadata
   const metadata = new Object()
   metadata.name = name
@@ -52,7 +44,7 @@ export const mintNFT = async (url, name, description) => {
     return {
       success: true,
       status:
-        'Check out your transaction on Etherscan: https://ropsten.etherscan.io/tx/' +
+        'Check out your transaction on Etherscan: https://rinkeby.etherscan.io/tx/' +
         txHash
     }
   } catch (error) {
@@ -70,7 +62,7 @@ export const connectWallet = async () => {
         method: 'eth_requestAccounts'
       })
       const obj = {
-        status: 'Write a message in the text-field above.',
+        status: 'Press "Mint" to mint!',
         address: addressArray[0]
       }
       return obj
@@ -107,7 +99,7 @@ export const getCurrentWalletConnected = async () => {
       if (addressArray.length > 0) {
         return {
           address: addressArray[0],
-          status: 'Write a message in the text-field above.'
+          status: 'Press "Mint" to mint!'
         }
       } else {
         return {

@@ -10,9 +10,6 @@ const Minter = (props) => {
   //State variables
   const [walletAddress, setWallet] = useState('')
   const [status, setStatus] = useState('')
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [url, setURL] = useState('')
 
   useEffect(async () => {
     const { address, status } = await getCurrentWalletConnected()
@@ -29,7 +26,11 @@ const Minter = (props) => {
   }
 
   const onMintPressed = async () => {
-    const { status } = await mintNFT(url, name, description)
+    const { status } = await mintNFT({
+      url: 'https://gateway.pinata.cloud/ipfs/QmU5Lj8Ef4XfhrfhwN9FdYuHQEuyvGa3CLhhmzWBweozks',
+      name: 'MatyiNFT',
+      description: "Matyi's Test NFT"
+    })
     setStatus(status)
   }
 
@@ -38,7 +39,7 @@ const Minter = (props) => {
       window.ethereum.on('accountsChanged', (accounts) => {
         if (accounts.length > 0) {
           setWallet(accounts[0])
-          setStatus('Write a message in the text-field above.')
+          setStatus('Press "Mint" to mint!')
         } else {
           setWallet('')
           setStatus('Connect to Metamask using the top right button.')
@@ -77,32 +78,17 @@ const Minter = (props) => {
       </button>
 
       <br></br>
-      <h1 id='title'>Alchemy NFT Minter</h1>
-      <p>Add your asset's link, name, and description, then press "Mint."</p>
-      <form>
-        <h2>Link to asset: </h2>
-        <input
-          type='text'
-          placeholder='e.g. https://gateway.pinata.cloud/ipfs/<hash>'
-          onChange={(event) => setURL(event.target.value)}
+      <div className='app-area'>
+        <h1 id='title'>Matyi's NFT</h1>
+        <img
+          src='https://gateway.pinata.cloud/ipfs/QmU5Lj8Ef4XfhrfhwN9FdYuHQEuyvGa3CLhhmzWBweozks'
+          alt="Matyi's NFT"
         />
-        <h2>Name: </h2>
-        <input
-          type='text'
-          placeholder='e.g. Test NFT!'
-          onChange={(event) => setName(event.target.value)}
-        />
-        <h2>Description: </h2>
-        <input
-          type='text'
-          placeholder='NFT Description'
-          onChange={(event) => setDescription(event.target.value)}
-        />
-      </form>
-      <button id='mintButton' onClick={onMintPressed}>
-        Mint NFT
-      </button>
-      <p id='status'>{status}</p>
+        <button id='mintButton' onClick={onMintPressed}>
+          Mint NFT
+        </button>
+        <p id='status'>{status}</p>
+      </div>
     </div>
   )
 }

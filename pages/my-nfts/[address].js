@@ -24,7 +24,7 @@ const MyNFTs = ({ NFTs }) => {
 
 export const getServerSideProps = async (context) => {
   const res = await axios.get(
-    `https://api-ropsten.etherscan.io/api?module=account&action=tokennfttx&address=${context.params.address}&startblock=0&endblock=999999999&sort=asc&apikey=${process.env.ETHERSCAN_KEY}`
+    `https://api-rinkeby.etherscan.io/api?module=account&action=tokennfttx&address=${context.params.address}&startblock=0&endblock=999999999&sort=asc&apikey=${process.env.ETHERSCAN_KEY}`
   )
   const NFTs = await res.data
 
